@@ -1,0 +1,19 @@
+# Python 3.11.2 이미지를 기반으로 합니다.
+FROM python:3.11.2
+
+# 작업 디렉토리를 설정합니다.
+WORKDIR /serviceZoneSensor
+
+# requirement.txt와 app 디렉토리를 Docker 컨테이너에 복사합니다.
+COPY ./requirements.txt ./requirements.txt
+COPY ./app ./app
+
+# 필요한 패키지를 설치합니다.
+RUN pip install --no-cache-dir -r requirements.txt
+
+# app 디렉토리로 이동합니다.
+WORKDIR /serviceZoneSensor/app
+
+# # main.py를 실행합니다.
+CMD ["python", "main.py"]
+# CMD ["tail", "-f", "/dev/null"]
